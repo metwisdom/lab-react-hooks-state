@@ -16,40 +16,38 @@ const App = () => {
     setCart((prevCart) => [...prevCart, product])
   }
 
-  const appStyle = {
-    backgroundColor: darkMode ? '#111827' : '#f5f5f5',
-    color: darkMode ? '#f9fafb' : '#111827',
-    minHeight: '100vh',
-    padding: '2rem',
-    fontFamily: 'Arial, sans-serif'
-  }
+  const appClass = darkMode ? 'app-shell dark' : 'app-shell'
 
   return (
-    <div style={appStyle}>
-      <h1>🛒 Shopping App</h1>
-      <p>
-        Welcome! Your task is to implement filtering, cart management, and dark
-        mode.
-      </p>
+    <div className={appClass}>
+      <div className="app-content">
+        <h1>🛒 Shopping App</h1>
+        <p>
+          Welcome! Your task is to implement filtering, cart management, and dark
+          mode.
+        </p>
 
-      <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        <div className="toolbar">
+          <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <label>Filter by Category: </label>
-      <select
-        value={selectedCategory}
-        onChange={(event) => setSelectedCategory(event.target.value)}
-      >
-        <option value="all">All</option>
-        <option value="Fruits">Fruits</option>
-        <option value="Dairy">Dairy</option>
-      </select>
+          <label>Filter by Category: </label>
+          <select
+            value={selectedCategory}
+            onChange={(event) => setSelectedCategory(event.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Dairy">Dairy</option>
+          </select>
+        </div>
 
-      <ProductList
-        selectedCategory={selectedCategory}
-        onAddToCart={addToCart}
-      />
+        <ProductList
+          selectedCategory={selectedCategory}
+          onAddToCart={addToCart}
+        />
 
-      <Cart cartItems={cart} />
+        <Cart cartItems={cart} />
+      </div>
     </div>
   )
 }
